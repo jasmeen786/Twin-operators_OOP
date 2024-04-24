@@ -140,7 +140,7 @@ public abstract class Player
     public abstract int GetMove(ConnectFour board);
 }
 
-public class HumanPlayer : Player
+public class HumanPlayer: Player
 {
     public override int GetMove(ConnectFour board)
     {
@@ -159,6 +159,20 @@ public class HumanPlayer : Player
                 Console.WriteLine("Invalid input. Please enter a valid column number.");
             }
         }
+    }
+}
+public class AIPlayer: Player
+{
+    public override int GetMove(ConnectFour board)
+    {
+        Random random = new Random();
+        int column;
+        do
+        {
+            column = random.Next(1, 8);
+        } while (!board.MakeMove(column, Symbol));
+
+        return column;
     }
 }
 
