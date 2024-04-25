@@ -199,6 +199,8 @@ public class GameManager
         Console.Write("Enter name for Player 2 (O): ");
         player2.Name = Console.ReadLine();
 
+         Console.WriteLine("Game starts!");
+
         board.DisplayBoard();
 
         Player currentPlayer = player1;
