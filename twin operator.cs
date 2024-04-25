@@ -304,19 +304,37 @@ class Program
         Console.WriteLine("Connect Four Game");
         Console.WriteLine("Choose the type of game:");
         Console.WriteLine("1. Player vs Player");
+        Console.WriteLine("2. Player vs AI");
         Console.Write("Enter your choice: ");
 
         int choice;
-        while (!int.TryParse(Console.ReadLine(), out choice) || choice != 1)
+        while (!int.TryParse(Console.ReadLine(), out choice) || (choice != 1 && choice != 2))
         {
-            Console.WriteLine("Invalid choice. Please enter 1.");
+            Console.WriteLine("Invalid choice. Please enter 1 or 2.");
             Console.Write("Enter your choice: ");
         }
 
+        // Initialize Player 1 as a HumanPlayer
         Player player1 = new HumanPlayer { Symbol = 'X' };
-        Player player2 = new HumanPlayer { Symbol = 'O' };
 
+        Player player2;
+
+        // Initialize Player 2 based on user's choice
+        if (choice == 1)
+        {
+            // If user chooses Player vs Player
+            player2 = new HumanPlayer { Symbol = 'O' };
+        }
+        else
+        {
+            // If user chooses Player vs AI
+            player2 = new AIPlayer { Symbol = 'O' };
+        }
+
+        // Create a new GameManager with the chosen players
         GameManager game = new GameManager(player1, player2);
+
+        // Start the game
         game.StartGame();
 
         Console.WriteLine("Press any key to exit...");
