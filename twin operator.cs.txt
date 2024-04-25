@@ -161,6 +161,39 @@ public class HumanPlayer: Player
         }
     }
 }
+public class HumanPlayer : Player
+{
+    public override int GetMove(ConnectFour board)
+    {
+        while (true)
+        {
+            Console.Write($"{Name}, enter the column number to drop your symbol ({Symbol}): ");
+            if (int.TryParse(Console.ReadLine(), out int column))
+            {
+                if (column >= 1 && column <= 7) // Check if column number is within valid range
+                {
+                    if (board.MakeMove(column, Symbol))
+                    {
+                        return column;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Column is full. Please choose another column.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid column number. Please choose a column from 1 to 7.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a valid column number.");
+            }
+        }
+    }
+}
+
 public class AIPlayer: Player
 {
     public override int GetMove(ConnectFour board)
